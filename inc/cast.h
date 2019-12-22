@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:49:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:19:40 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:29:21 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ typedef struct	s_cast
 void	init_cast(t_cast *cast, int x);
 void	do_cast(t_cast *cast);
 void	draw_cast(t_cast *cast);
+void	cast_all(void);
 
 #endif

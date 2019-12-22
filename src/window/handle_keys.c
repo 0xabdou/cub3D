@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:09:11 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 19:14:20 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:32:13 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	handle_keys(int key, void *params)
 		rotate_player(key);
 	else if (key == K_ESC)
 		game_over();
+	cast_all();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:20:33 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/18 13:03:35 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:32:43 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define WINDOW_H
 # include "image.h"
 # include "scene.h"
-# include "ray.h"
+# include "cast.h"
 # include <mlx.h>
 
 typedef struct	s_window
