@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:35:37 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:40:36 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,12 @@ int cast_rays(void *params)
 	int h = g_scene.resolution.y;
 	for(int x = 0; x < w; x++)
 	{
-		double perpWallDist;
-
 		//calculate step and initial sideDist
 		t_cast cast;
 		init_cast(&cast, x);
 		do_cast(&cast);
-		//Calculate distance projected on camera direction
-		//(Euclidean distance will give fisheye effect!)
-		if (cast.side == 0) perpWallDist = (cast.mapx - g_player.x + (1 - cast.stepx) / 2) / cast.rdx;
-		else           perpWallDist = (cast.mapy - g_player.y + (1 - cast.stepy) / 2) / cast.rdy;
 		///Calculate height of line to draw on screen
-		int lineHeight = h / perpWallDist;
+		int lineHeight = h / cast.pdist;
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + h / 2;
@@ -117,8 +111,8 @@ int cast_rays(void *params)
 		int drawEnd = lineHeight / 2 + h / 2;
 		if(drawEnd >= h)drawEnd = h - 1;
 		double wallX; //where exactly the wall was hit
-		if (cast.side == 0) wallX = g_player.y + perpWallDist * cast.rdy;
-		else           wallX = g_player.x + perpWallDist * cast.rdx;
+		if (cast.side == 0) wallX = g_player.y + cast.pdist * cast.rdy;
+		else           wallX = g_player.x + cast.pdist * cast.rdx;
 		wallX -= floor(wallX);
 		//x coordinate on the texture
 		int texX = wallX * (double)(texWidth);

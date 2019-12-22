@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42->fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:30:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:35:06 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:42:32 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,7 @@ void	do_cast(t_cast *cast)
 		if (g_scene.map[cast->mapx + cast->mapy * g_scene.map_size.x] == '1')
 			break ;
 	}
+	cast->pdist = cast->side
+		? (cast->mapy - g_player.y + (1 - cast->stepy) / 2) / cast->rdy
+		: (cast->mapx - g_player.x + (1 - cast->stepx) / 2) / cast->rdx;
 }
