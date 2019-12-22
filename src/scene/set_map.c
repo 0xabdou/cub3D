@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:47:29 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/14 12:14:22 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 00:34:19 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,15 @@ static int	check_all(char *line)
 
 static int	check_ends(char *line)
 {
-	if ((int)ft_strlen(line) == g_scene.map_size.x
+	int	len;
+
+	len = 0;
+	while (line[len])
+		if (line[len++] == '2')
+			g_num_sprites++;
+	if (len == g_scene.map_size.x
 			&& *line == '1'
-			&& line[g_scene.map_size.x - 1] == '1')
+			&& line[len - 1] == '1')
 		return (0);
 	g_error |= MAP_ERROR;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 18:35:49 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/14 12:10:35 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 00:38:03 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void		init_scene(char *scene_file)
 	}
 	skip_empty_lines(fd, &line);
 	set_map(fd, line);
+	g_distances = malloc(g_scene.resolution.x * sizeof(double));
 }

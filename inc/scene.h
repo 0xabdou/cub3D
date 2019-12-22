@@ -54,6 +54,9 @@ typedef struct	s_scene
 }				t_scene;
 
 t_scene			g_scene;
+double			*g_distances;
+t_dvector		*g_sprites;
+int				g_num_sprites;
 
 void			init_scene(char *scene_path);
 int				set_color(char *line, int flags);

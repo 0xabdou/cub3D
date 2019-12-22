@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42->fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:30:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:42:32 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 00:36:26 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	do_cast(t_cast *cast)
 	cast->pdist = cast->side
 		? (cast->mapy - g_player.y + (1 - cast->stepy) / 2) / cast->rdy
 		: (cast->mapx - g_player.x + (1 - cast->stepx) / 2) / cast->rdx;
+	g_distances[cast->index] = cast->pdist;
 }
