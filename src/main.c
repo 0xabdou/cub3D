@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:34:21 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:45:04 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			main(int c, char **v)
 		return (0);
 	}
 	print_scene();
-	cast_all();
+	handle_keys(-1, 0);
 	//mlx_loop_hook(g_window.mlx_ptr, cast_rays, 0);
 	mlx_hook(g_window.win_ptr, 2, 1L << 0, handle_keys, 0);
 	mlx_loop(g_window.mlx_ptr);

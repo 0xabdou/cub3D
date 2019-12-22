@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh.c                                          :+:      :+:    :+:   */
+/*   reset_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 15:09:11 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:41:23 by aouahib          ###   ########.fr       */
+/*   Created: 2019/12/22 22:42:50 by aouahib           #+#    #+#             */
+/*   Updated: 2019/12/22 22:43:08 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window.h"
 
-int	handle_keys(int key, void *params)
+void     reset_image(void)
 {
-	(void)params;
-	if (key == K_W || key == K_S || key == K_A || key == K_D)
+	int *image;
+	int i;
+	int j;
+
+	image = g_window.image.data;
+	i = 0;
+	while (i < g_scene.resolution.y)
 	{
-		move_player(key);
-		rotate_player(key);
+		j = 0;
+		while (j < g_scene.resolution.x)
+		{
+			image[j + i * g_window.image.line_size] = g_scene.ceil_color;
+			j++;
+		}
+		i++;
 	}
-	else if (key == K_LA || key == K_RA)
-		rotate_player(key);
-	else if (key == K_ESC)
-		game_over();
-	cast_all();
-	mlx_put_image_to_window(g_window.mlx_ptr,
-			g_window.win_ptr,
-			g_window.image.ptr,
-			0, 0);
-	return (0);
 }
+

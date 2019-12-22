@@ -30,6 +30,7 @@ SRC := $(SRC) \
 	src/window/init_window.c \
 	src/window/init_textures.c \
 	src/window/load_texture.c \
+	src/window/reset_image.c \
 	src/window/hook_window.c \
 	src/window/handle_keys.c
 	#src/window/render_walls.c \
