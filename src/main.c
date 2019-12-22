@@ -6,51 +6,17 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 15:21:13 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 18:02:22 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "window.h"
 #include <stdio.h>
-#define mapWidth 24
-#define mapHeight 24
 #define texHeight 64
 #define texWidth 64
 #define false 0
 #define true 1
-
-int worldMap[mapWidth][mapHeight]=
-{
-	{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7},
-	{4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-	{4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-	{4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
-	{4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
-	{4,0,4,0,0,0,0,5,5,5,5,5,5,5,5,5,7,7,0,7,7,7,7,7},
-	{4,0,5,0,0,0,0,5,0,5,0,5,0,5,0,5,7,0,0,0,7,7,7,1},
-	{4,0,6,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
-	{4,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,1},
-	{4,0,8,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
-	{4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,7,7,7,1},
-	{4,0,0,0,0,0,0,5,5,5,5,0,5,5,5,5,7,7,7,7,7,7,7,1},
-	{6,6,6,6,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
-	{8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
-	{6,6,6,6,6,6,0,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
-	{4,4,4,4,4,4,0,4,4,4,6,0,6,2,2,2,2,2,2,2,3,3,3,3},
-	{4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
-	{4,0,0,0,0,0,0,0,0,0,0,0,6,2,0,0,5,0,0,2,0,0,0,2},
-	{4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
-	{4,0,6,0,6,0,0,0,0,4,6,0,0,0,0,0,5,0,0,0,0,0,0,2},
-	{4,0,0,5,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
-	{4,0,6,0,6,0,0,0,0,4,6,0,6,2,0,0,5,0,0,2,0,0,0,2},
-	{4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
-	{4,4,4,4,4,4,4,4,4,4,1,1,1,2,2,2,2,2,2,3,3,3,3,3}
-};
-
-double posX = 22, posY = 12;  //x and y start position
-double dirX = -1, dirY = 0; //initial direction vector
-double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
 
 int	cast_rays(void *params);
 
@@ -62,35 +28,41 @@ int handle_keys2(int key, void *params)
 	double rotSpeed = 0.1;
 	if (key == K_W)
 	{
-		if(worldMap[(int)(posX + dirX * moveSpeed)][(int)(posY)] == false)
-			posX += dirX * moveSpeed;
-		if(worldMap[(int)(posX)][(int)(posY + dirY * moveSpeed)] == false)
-			posY += dirY * moveSpeed;
+		if(g_scene.map[(int)(g_player.x + g_dir.x * moveSpeed)
+				+ g_scene.map_size.x * (int)g_player.y] != '1')
+			g_player.x += g_dir.x * moveSpeed;
+		if(g_scene.map[(int)g_player.x +
+				(int)(g_player.y + g_dir.y * moveSpeed) * g_scene.map_size.x] != '1')
+			g_player.y += g_dir.y * moveSpeed;
+		printf("new_x=>%c\n", g_scene.map[(int)(g_player.x + g_dir.x * moveSpeed)
+				+(int)(g_scene.map_size.x * g_player.y)] );
 	}
 	if (key == K_S)
 	{
-		if(worldMap[(int)(posX - dirX * moveSpeed)][(int)(posY)] == false)
-			posX -= dirX * moveSpeed;
-		if(worldMap[(int)(posX)][(int)(posY - dirY * moveSpeed)] == false)
-			posY -= dirY * moveSpeed;
-	}
-	if (key == K_D)
-	{
-		double oldDirX = dirX;
-		dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-		dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-		planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+		if(g_scene.map[(int)(g_player.x - g_dir.x * moveSpeed)
+				+ (int)g_player.y * g_scene.map_size.x] == '0')
+			g_player.x -= g_dir.x * moveSpeed;
+		if(g_scene.map[(int)(g_player.x) +
+				(int)(g_player.y - g_dir.y * moveSpeed) * g_scene.map_size.x] == '0')
+			g_player.y -= g_dir.y * moveSpeed;
 	}
 	if (key == K_A)
 	{
-		double oldDirX = dirX;
-		dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-		dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-		planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+		double oldDirX = g_dir.x;
+		g_dir.x = g_dir.x * cos(-rotSpeed) - g_dir.y * sin(-rotSpeed);
+		g_dir.y = oldDirX * sin(-rotSpeed) + g_dir.y * cos(-rotSpeed);
+		double oldPlaneX = g_cam.x;
+		g_cam.x = g_cam.x * cos(-rotSpeed) - g_cam.y * sin(-rotSpeed);
+		g_cam.y = oldPlaneX * sin(-rotSpeed) + g_cam.y * cos(-rotSpeed);
+	}
+	if (key == K_D)
+	{
+		double oldDirX = g_dir.x;
+		g_dir.x = g_dir.x * cos(rotSpeed) - g_dir.y * sin(rotSpeed);
+		g_dir.y = oldDirX * sin(rotSpeed) + g_dir.y * cos(rotSpeed);
+		double oldPlaneX = g_cam.x;
+		g_cam.x = g_cam.x * cos(rotSpeed) - g_cam.y * sin(rotSpeed);
+		g_cam.y = oldPlaneX * sin(rotSpeed) + g_cam.y * cos(rotSpeed);
 	}
 	else if (key == K_ESC)
 		game_over();
@@ -113,6 +85,7 @@ int			main(int c, char **v)
 		print_error();
 		return (0);
 	}
+	print_scene();
 	mlx_loop_hook(g_window.mlx_ptr, cast_rays, 0);
 	mlx_hook(g_window.win_ptr, 2, 1L << 0, handle_keys2, 0);
 	mlx_loop(g_window.mlx_ptr);
@@ -174,12 +147,12 @@ int cast_rays(void *params)
 	for(int x = 0; x < w; x++)
 	{
 		double cameraX = 2 * x / (double)(w) - 1; //x-coordinate in camera space
-		double rayDirX = dirX + planeX * cameraX;
-		double rayDirY = dirY + planeY * cameraX;
+		double rayDirX = g_dir.x + g_cam.x * cameraX;
+		double rayDirY = g_dir.y + g_cam.y * cameraX;
 
 		//which box of the map we're in
-		int mapX = (int)(posX);
-		int mapY = (int)(posY);
+		int mapX = (int)(g_player.x);
+		int mapY = (int)(g_player.y);
 		//length of ray from current position to next x or y-side
 		double sideDistX;
 		double sideDistY;
@@ -200,22 +173,22 @@ int cast_rays(void *params)
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (posX - mapX) * deltaDistX;
+			sideDistX = (g_player.x - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - g_player.x) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (posY - mapY) * deltaDistY;
+			sideDistY = (g_player.y - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+			sideDistY = (mapY + 1.0 - g_player.y) * deltaDistY;
 		}
 		while (hit == 0)
 		{
@@ -233,12 +206,12 @@ int cast_rays(void *params)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (worldMap[mapX][mapY] > 0) hit = 1;
+			if (g_scene.map[mapX + mapY * g_scene.map_size.x] == '1') hit = 1;
 		} 
 		//Calculate distance projected on camera direction
 		//(Euclidean distance will give fisheye effect!)
-		if (side == 0) perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
-		else           perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
+		if (side == 0) perpWallDist = (mapX - g_player.x + (1 - stepX) / 2) / rayDirX;
+		else           perpWallDist = (mapY - g_player.y + (1 - stepY) / 2) / rayDirY;
 		///Calculate height of line to draw on screen
 		int lineHeight = (int)(h / perpWallDist);
 
@@ -248,8 +221,8 @@ int cast_rays(void *params)
 		int drawEnd = lineHeight / 2 + h / 2;
 		if(drawEnd >= h)drawEnd = h - 1;
 		double wallX; //where exactly the wall was hit
-		if (side == 0) wallX = posY + perpWallDist * rayDirY;
-		else           wallX = posX + perpWallDist * rayDirX;
+		if (side == 0) wallX = g_player.y + perpWallDist * rayDirY;
+		else           wallX = g_player.x + perpWallDist * rayDirX;
 		wallX -= floor((wallX));
 		//x coordinate on the texture
 		int texX = (int)(wallX * (double)(texWidth));

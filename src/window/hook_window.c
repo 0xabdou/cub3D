@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:05:44 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/18 20:25:41 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 16:40:17 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void		hook_window(void)
 {
 	mlx_hook(g_window.win_ptr, 2, 1L << 0, handle_keys, 0);
 	mlx_hook(g_window.win_ptr, 17, 1L << 0, closed_using_x, 0);
-	mlx_loop_hook(g_window.mlx_ptr, refresh, 0);
+	//mlx_loop_hook(g_window.mlx_ptr, refresh, 0);
 }

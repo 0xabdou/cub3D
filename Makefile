@@ -31,24 +31,12 @@ SRC := $(SRC) \
 	src/window/init_textures.c \
 	src/window/load_texture.c \
 	src/window/hook_window.c \
-	src/window/render_walls.c \
-	src/window/put_column.c \
-	src/window/refresh.c \
 	src/window/handle_keys.c
-# ray
-SRC := $(SRC) \
-	src/ray/init_rays.c \
-	src/ray/new_ray.c \
-	src/ray/cast_ray.c \
-	src/ray/cast_all_rays.c \
-	src/ray/find_vert_wall.c \
-	src/ray/find_horz_wall.c \
-	src/ray/set_wall_side.c \
-	sr/ray/check_sprite.c \
-	src/ray/free_rays.c
+	#src/window/render_walls.c \
+	#src/window/put_column.c \
+	#src/window/refresh.c \
 # utils
 SRC := $(SRC) \
-	src/utils/normalize_angle.c \
 	src/utils/is_num.c \
 	src/utils/distance.c \
 	src/utils/free_split.c \
