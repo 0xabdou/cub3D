@@ -6,38 +6,42 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:53:15 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:04:51 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:22:16 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cast.h"
 
-void	init_cast(t_cast *cast, double rdx, double rdy)
+void	init_cast(t_cast *cast, int x)
 {
 
-	int	mapX = g_player.x;
-	int	mapY = g_player.y;
+	double	camx;
 
-	cast->ddx = sqrt(1 + (rdy * rdy) / (rdx * rdx));
-	cast->ddy = sqrt(1 + (rdx * rdx) / (rdy * rdy));	
-	if (rdx < 0)
+	camx = 2 * x / (double)g_scene.resolution.x - 1;
+	cast->rdx = g_dir.x + g_cam.x * camx;
+	cast->rdy = g_dir.y + g_cam.y * camx;
+	cast->mapx = g_player.x;
+	cast->mapy = g_player.y;
+	cast->ddx = sqrt(1 + (cast->rdy * cast->rdy) / (cast->rdx * cast->rdx));
+	cast->ddy = sqrt(1 + (cast->rdx * cast->rdx) / (cast->rdy * cast->rdy));	
+	if (cast->rdx < 0)
 	{
 		cast->stepx = -1;
-		cast->sdx = (g_player.x - mapX) * cast->ddx;
+		cast->sdx = (g_player.x - cast->mapx) * cast->ddx;
 	}
 	else
 	{
 		cast->stepx = 1;
-		cast->sdx = (mapX + 1.0 - g_player.x) * cast->ddx;
+		cast->sdx = (cast->mapx + 1.0 - g_player.x) * cast->ddx;
 	}
-	if (rdy < 0)
+	if (cast->rdy < 0)
 	{
 		cast->stepy = -1;
-		cast->sdy = (g_player.y - mapY) * cast->ddy;
+		cast->sdy = (g_player.y - cast->mapy) * cast->ddy;
 	}
 	else
 	{
 		cast->stepy = 1;
-		cast->sdy = (mapY + 1.0 - g_player.y) * cast->ddy;
+		cast->sdy = (cast->mapy + 1.0 - g_player.y) * cast->ddy;
 	}
 }
