@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:26:05 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:35:37 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,33 +100,13 @@ int cast_rays(void *params)
 	{
 		double perpWallDist;
 
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-
 		//calculate step and initial sideDist
 		t_cast cast;
 		init_cast(&cast, x);
-		while (hit == 0)
-		{
-			//jump to next map square, OR in x-direction, OR in y-direction
-			if (cast.sdx < cast.sdy)
-			{
-				cast.sdx += cast.ddx;
-				cast.mapx += cast.stepx;
-				side = 0;
-			}
-			else
-			{
-				cast.sdy += cast.ddy;
-				cast.mapy += cast.stepy;
-				side = 1;
-			}
-			//Check if ray has hit a wall
-			if (g_scene.map[cast.mapx + cast.mapy * g_scene.map_size.x] == '1') hit = 1;
-		} 
+		do_cast(&cast);
 		//Calculate distance projected on camera direction
 		//(Euclidean distance will give fisheye effect!)
-		if (side == 0) perpWallDist = (cast.mapx - g_player.x + (1 - cast.stepx) / 2) / cast.rdx;
+		if (cast.side == 0) perpWallDist = (cast.mapx - g_player.x + (1 - cast.stepx) / 2) / cast.rdx;
 		else           perpWallDist = (cast.mapy - g_player.y + (1 - cast.stepy) / 2) / cast.rdy;
 		///Calculate height of line to draw on screen
 		int lineHeight = h / perpWallDist;
@@ -137,16 +117,16 @@ int cast_rays(void *params)
 		int drawEnd = lineHeight / 2 + h / 2;
 		if(drawEnd >= h)drawEnd = h - 1;
 		double wallX; //where exactly the wall was hit
-		if (side == 0) wallX = g_player.y + perpWallDist * cast.rdy;
+		if (cast.side == 0) wallX = g_player.y + perpWallDist * cast.rdy;
 		else           wallX = g_player.x + perpWallDist * cast.rdx;
 		wallX -= floor(wallX);
 		//x coordinate on the texture
 		int texX = wallX * (double)(texWidth);
-		if(side == 0 && cast.rdx > 0) texX = texWidth - texX - 1;
-		if(side == 1 && cast.rdy < 0) texX = texWidth - texX - 1;
+		if(cast.side == 0 && cast.rdx > 0) texX = texWidth - texX - 1;
+		if(cast.side == 1 && cast.rdy < 0) texX = texWidth - texX - 1;
 		//draw the pixels of the stripe as a vertical line
 
-		vert_line(x, drawStart, drawEnd, lineHeight, texX, side);
+		vert_line(x, drawStart, drawEnd, lineHeight, texX, cast.side);
 	}
 	mlx_put_image_to_window(g_window.mlx_ptr,
 			g_window.win_ptr,

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:49:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:22:07 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:33:38 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ typedef struct	s_cast
 	int		stepy;
 	int		mapx;
 	int		mapy;
+	int		side;
 }				t_cast;
 
 void	init_cast(t_cast *cast, int x);
+void	do_cast(t_cast *cast);
 
 #endif

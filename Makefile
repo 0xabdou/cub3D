@@ -39,6 +39,7 @@ SRC := $(SRC) \
 # cast
 SRC := $(SRC) \
 	src/cast/init_cast.c \
+	src/cast/do_cast.c
 # utils
 SRC := $(SRC) \
 	src/utils/is_num.c \
