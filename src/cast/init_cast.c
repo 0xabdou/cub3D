@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:53:15 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 21:22:16 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:20:15 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	init_cast(t_cast *cast, int x)
 		cast->stepy = 1;
 		cast->sdy = (cast->mapy + 1.0 - g_player.y) * cast->ddy;
 	}
+	cast->index = x;
 }
