@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 16:28:55 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 16:24:13 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 19:09:49 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include "scene.h"
 # include "keys.h"
 # include <math.h>
-# define FOV_ANGLE (66 * (M_PI / 180))
-# define ROTATION_STEP (5 * (M_PI / 180))
-# define MOVE_STEP 8
+# define ROT_STEP 0.1
+# define MOVE_STEP 0.3
 
 t_dvector		g_player;
 t_dvector		g_dir;

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 18:02:22 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 19:14:49 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,55 +19,6 @@
 #define true 1
 
 int	cast_rays(void *params);
-
-
-int handle_keys2(int key, void *params)
-{
-	(void)params;
-	double moveSpeed = 0.3;
-	double rotSpeed = 0.1;
-	if (key == K_W)
-	{
-		if(g_scene.map[(int)(g_player.x + g_dir.x * moveSpeed)
-				+ g_scene.map_size.x * (int)g_player.y] != '1')
-			g_player.x += g_dir.x * moveSpeed;
-		if(g_scene.map[(int)g_player.x +
-				(int)(g_player.y + g_dir.y * moveSpeed) * g_scene.map_size.x] != '1')
-			g_player.y += g_dir.y * moveSpeed;
-		printf("new_x=>%c\n", g_scene.map[(int)(g_player.x + g_dir.x * moveSpeed)
-				+(int)(g_scene.map_size.x * g_player.y)] );
-	}
-	if (key == K_S)
-	{
-		if(g_scene.map[(int)(g_player.x - g_dir.x * moveSpeed)
-				+ (int)g_player.y * g_scene.map_size.x] == '0')
-			g_player.x -= g_dir.x * moveSpeed;
-		if(g_scene.map[(int)(g_player.x) +
-				(int)(g_player.y - g_dir.y * moveSpeed) * g_scene.map_size.x] == '0')
-			g_player.y -= g_dir.y * moveSpeed;
-	}
-	if (key == K_A)
-	{
-		double oldDirX = g_dir.x;
-		g_dir.x = g_dir.x * cos(-rotSpeed) - g_dir.y * sin(-rotSpeed);
-		g_dir.y = oldDirX * sin(-rotSpeed) + g_dir.y * cos(-rotSpeed);
-		double oldPlaneX = g_cam.x;
-		g_cam.x = g_cam.x * cos(-rotSpeed) - g_cam.y * sin(-rotSpeed);
-		g_cam.y = oldPlaneX * sin(-rotSpeed) + g_cam.y * cos(-rotSpeed);
-	}
-	if (key == K_D)
-	{
-		double oldDirX = g_dir.x;
-		g_dir.x = g_dir.x * cos(rotSpeed) - g_dir.y * sin(rotSpeed);
-		g_dir.y = oldDirX * sin(rotSpeed) + g_dir.y * cos(rotSpeed);
-		double oldPlaneX = g_cam.x;
-		g_cam.x = g_cam.x * cos(rotSpeed) - g_cam.y * sin(rotSpeed);
-		g_cam.y = oldPlaneX * sin(rotSpeed) + g_cam.y * cos(rotSpeed);
-	}
-	else if (key == K_ESC)
-		game_over();
-	return (0);
-}
 
 int			main(int c, char **v)
 {
@@ -87,7 +38,7 @@ int			main(int c, char **v)
 	}
 	print_scene();
 	mlx_loop_hook(g_window.mlx_ptr, cast_rays, 0);
-	mlx_hook(g_window.win_ptr, 2, 1L << 0, handle_keys2, 0);
+	mlx_hook(g_window.win_ptr, 2, 1L << 0, handle_keys, 0);
 	mlx_loop(g_window.mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 12:58:29 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 16:25:32 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 19:12:12 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 void	rotate_player(int key)
 {
-	double	angle;
-
-	//angle = g_player.angle;
-	angle = 0;
-	if (key == K_LA)
-		angle -= ROTATION_STEP;
-	else if (key == K_RA)
-		angle += ROTATION_STEP;
-	//g_player.angle = normalize_angle(angle);
+	if (key == K_A)
+	{
+		double oldDirX = g_dir.x;
+		g_dir.x = g_dir.x * cos(-ROT_STEP) - g_dir.y * sin(-ROT_STEP);
+		g_dir.y = oldDirX * sin(-ROT_STEP) + g_dir.y * cos(-ROT_STEP);
+		double oldPlaneX = g_cam.x;
+		g_cam.x = g_cam.x * cos(-ROT_STEP) - g_cam.y * sin(-ROT_STEP);
+		g_cam.y = oldPlaneX * sin(-ROT_STEP) + g_cam.y * cos(-ROT_STEP);
+	}
+	if (key == K_D)
+	{
+		double oldDirX = g_dir.x;
+		g_dir.x = g_dir.x * cos(ROT_STEP) - g_dir.y * sin(ROT_STEP);
+		g_dir.y = oldDirX * sin(ROT_STEP) + g_dir.y * cos(ROT_STEP);
+		double oldPlaneX = g_cam.x;
+		g_cam.x = g_cam.x * cos(ROT_STEP) - g_cam.y * sin(ROT_STEP);
+		g_cam.y = oldPlaneX * sin(ROT_STEP) + g_cam.y * cos(ROT_STEP);
+	}
 }
