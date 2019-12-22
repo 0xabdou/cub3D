@@ -12,30 +12,25 @@ MAIN = src/main.c
 # scene
 SRC := $(SRC) \
 	src/scene/init_scene.c \
+	src/scene/clean_scene.c \
+	src/scene/print_scene.c \
 	src/scene/set_color.c \
+	src/scene/set_map.c \
 	src/scene/set_path.c \
 	src/scene/set_resolution.c \
-	src/scene/set_map.c \
 	src/scene/verify_map.c \
-	src/scene/print_scene.c \
-	src/scene/clean_scene.c \
-	src/scene/map_has_wall_at.c
 # player
 SRC := $(SRC) \
 	src/player/init_player.c \
-	src/player/rotate_player.c \
-	src/player/move_player.c
+	src/player/move_player.c \
+	src/player/rotate_player.c
 # window
 SRC := $(SRC) \
 	src/window/init_window.c \
 	src/window/init_textures.c \
 	src/window/load_texture.c \
-	src/window/reset_image.c \
-	src/window/hook_window.c \
-	src/window/handle_keys.c
-	#src/window/render_walls.c \
-	#src/window/put_column.c \
-	#src/window/refresh.c \
+	src/window/handle_keys.c \
+	src/window/reset_image.c
 
 # cast
 SRC := $(SRC) \
@@ -43,11 +38,11 @@ SRC := $(SRC) \
 	src/cast/do_cast.c \
 	src/cast/draw_cast.c \
 	src/cast/cast_all.c
-# utils
+# utils (distance ????)
 SRC := $(SRC) \
 	src/utils/is_num.c \
-	src/utils/distance.c \
 	src/utils/free_split.c \
+	src/utils/distance.c \
 	src/utils/game_over.c
 # vector
 SRC := $(SRC) \

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 14:32:41 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/18 12:51:53 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:54:17 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "libft.h"
 # include "error.h"
 # include "scene.h"
-# include "ray.h"
 # include <math.h>
 # define RGB(r, g, b) ((r) << 16 | (g) << 8 | (b))
 
