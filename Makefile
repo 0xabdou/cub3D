@@ -35,6 +35,10 @@ SRC := $(SRC) \
 	#src/window/render_walls.c \
 	#src/window/put_column.c \
 	#src/window/refresh.c \
+
+# cast
+SRC := $(SRC) \
+	src/cast/init_cast.c \
 # utils
 SRC := $(SRC) \
 	src/utils/is_num.c \
@@ -57,6 +61,8 @@ $(NAME): $(MAIN) $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) -I $(LIBFT_INC) -I $(INC) $(LIBFT) $(OBJ) $(MAIN) -o $(NAME)
 
 %.o: src/scene/%.c
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+%.o: src/cast/%.c
 	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
 %.o: src/player/%.c
 	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)

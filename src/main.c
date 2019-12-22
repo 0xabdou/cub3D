@@ -6,12 +6,13 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 19:14:49 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/22 21:01:26 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "window.h"
+#include "cast.h"
 #include <stdio.h>
 #define texHeight 64
 #define texWidth 64
@@ -102,58 +103,30 @@ int cast_rays(void *params)
 		double rayDirY = g_dir.y + g_cam.y * cameraX;
 
 		//which box of the map we're in
-		int mapX = (int)(g_player.x);
-		int mapY = (int)(g_player.y);
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
+		int mapX = g_player.x;
+		int mapY = g_player.y;
 
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = fabs(1 / rayDirX);
-		double deltaDistY = fabs(1 / rayDirY);
 		double perpWallDist;
-
-		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
 
 		int hit = 0; //was there a wall hit?
 		int side; //was a NS or a EW wall hit?
 
 		//calculate step and initial sideDist
-		if (rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (g_player.x - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - g_player.x) * deltaDistX;
-		}
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (g_player.y - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - g_player.y) * deltaDistY;
-		}
+		t_cast cast;
+		init_cast(&cast, rayDirX, rayDirY);
 		while (hit == 0)
 		{
 			//jump to next map square, OR in x-direction, OR in y-direction
-			if (sideDistX < sideDistY)
+			if (cast.sdx < cast.sdy)
 			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
+				cast.sdx += cast.ddx;
+				mapX += cast.stepx;
 				side = 0;
 			}
 			else
 			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
+				cast.sdy += cast.ddy;
+				mapY += cast.stepy;
 				side = 1;
 			}
 			//Check if ray has hit a wall
@@ -161,8 +134,8 @@ int cast_rays(void *params)
 		} 
 		//Calculate distance projected on camera direction
 		//(Euclidean distance will give fisheye effect!)
-		if (side == 0) perpWallDist = (mapX - g_player.x + (1 - stepX) / 2) / rayDirX;
-		else           perpWallDist = (mapY - g_player.y + (1 - stepY) / 2) / rayDirY;
+		if (side == 0) perpWallDist = (mapX - g_player.x + (1 - cast.stepx) / 2) / rayDirX;
+		else           perpWallDist = (mapY - g_player.y + (1 - cast.stepy) / 2) / rayDirY;
 		///Calculate height of line to draw on screen
 		int lineHeight = (int)(h / perpWallDist);
 
@@ -180,7 +153,7 @@ int cast_rays(void *params)
 		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
 		if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
 		//draw the pixels of the stripe as a vertical line
-		
+
 		vert_line(x, drawStart, drawEnd, lineHeight, texX, side);
 	}
 	mlx_put_image_to_window(g_window.mlx_ptr,
