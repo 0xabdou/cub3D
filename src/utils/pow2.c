@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   pow2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/08 14:32:41 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 18:34:12 by aouahib          ###   ########.fr       */
+/*   Created: 2019/12/23 18:32:52 by aouahib           #+#    #+#             */
+/*   Updated: 2019/12/23 18:33:31 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
-# include "libft.h"
-# include "error.h"
-# include "scene.h"
-# include <math.h>
-# define RGB(r, g, b) ((r) << 16 | (g) << 8 | (b))
+#include "utils.h"
 
-int		is_num(char *s);
-void	free_split(char **s);
-double	distance(double x1, double y1, double x2, double y2);
-double	pow2(double x);
-void	game_over(void);
-
-#endif
+double	pow2(double x)
+{
+	return (x * x);
+}

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:57:10 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 16:53:35 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 19:32:50 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ static void		vert_line(int x, int height, int tex_x, t_image texture)
 {
 	int	start;
 	int	end;
-	int	y;
+	int	screen_y;
 	int	tex_y;
-	int	color;
 	int	i;
 
-	start  = -height / 2 + g_scene.resolution.y / 2;
+	start = -height / 2 + g_scene.resolution.y / 2;
 	i = 0;
 	if (start < 0)
 	{
@@ -31,12 +30,13 @@ static void		vert_line(int x, int height, int tex_x, t_image texture)
 	end = height / 2 + g_scene.resolution.y / 2;
 	if (end >= g_scene.resolution.y)
 		end = g_scene.resolution.y - 1;
-	for(y = start; y< end; y++)
+	while (start < end)
 	{
-		tex_y = i * TEX_SIZE / height;
-		color = texture.data[tex_x + tex_y * TEX_SIZE];
-		g_window.image.data[x + y * g_window.image.line_size] = color;
-		i++;
+		screen_y = start - g_scene.resolution.y / 2 + height / 2;
+		tex_y = screen_y * TEX_SIZE / height;
+		g_window.image.data[x + start * g_window.image.line_size] =
+			texture.data[tex_x + tex_y * TEX_SIZE];
+		start++;
 	}
 }
 
@@ -51,7 +51,6 @@ static t_image	get_texture(t_cast *cast)
 			return (g_scene.north_texture);
 		}
 		return (g_scene.east_texture);
-
 	}
 	else
 	{
@@ -74,7 +73,7 @@ void			draw_cast(t_cast *cast)
 
 	texture = get_texture(cast);
 	height = g_scene.resolution.y / cast->pdist;
-	wall_x  = cast->side
+	wall_x = cast->side
 		? wall_x = g_player.x + cast->pdist * cast->rdx
 		: g_player.y + cast->pdist * cast->rdy;
 	wall_x -= floor(wall_x);

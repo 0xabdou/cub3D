@@ -44,6 +44,7 @@ SRC := $(SRC) \
 	src/utils/is_num.c \
 	src/utils/free_split.c \
 	src/utils/distance.c \
+	src/utils/pow2.c \
 	src/utils/game_over.c
 # vector
 SRC := $(SRC) \
