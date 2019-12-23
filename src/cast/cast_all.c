@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 22:29:28 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:43:58 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 13:54:04 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	cast_all(void)
 		do_cast(&cast);
 		draw_cast(&cast);
 	}
+	draw_sprites();
 }

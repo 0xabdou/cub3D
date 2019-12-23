@@ -37,6 +37,7 @@ SRC := $(SRC) \
 	src/cast/init_cast.c \
 	src/cast/do_cast.c \
 	src/cast/draw_cast.c \
+	src/cast/draw_sprites.c \
 	src/cast/cast_all.c
 # utils (distance ????)
 SRC := $(SRC) \

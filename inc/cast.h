@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:49:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:29:21 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 13:18:32 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,19 @@ typedef struct	s_cast
 	double	pdist;
 }				t_cast;
 
+typedef struct	s_sprite_info
+{
+	t_dvector	projection;
+	t_vector	dimensions;
+	t_vector	start;
+	t_vector	end;
+	int			center_x;
+}				t_sprite_info;
+
 void	init_cast(t_cast *cast, int x);
 void	do_cast(t_cast *cast);
 void	draw_cast(t_cast *cast);
+void	draw_sprites(void);
 void	cast_all(void);
 
 #endif
