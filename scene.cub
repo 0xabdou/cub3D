@@ -8,7 +8,7 @@ WE ./textures/brick.xpm
 
 EA ./textures/brick.xpm
 
-S ./textures/brick.xpm
+S ./textures/sword.xpm
 
 F 104,65,51
 

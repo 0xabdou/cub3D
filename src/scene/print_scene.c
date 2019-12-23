@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 12:41:06 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 16:47:15 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 11:56:02 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,10 @@ void		print_scene(void)
 	printf("\tplayer.x = %.2f, player.y = %.2f\n", g_player.x, g_player.y);
 	printf("\tdir.x = %.2f, dir.y = %.2f\n", g_dir.x, g_dir.y);
 	printf("\tcam.x = %.2f, cam.y = %.2f\n", g_cam.x, g_cam.y);
+	printf("\tnum_sprites = %i\n", g_num_sprites);
+	for (int i = 0; i < g_num_sprites; i++)
+	{
+		printf("\tsprite%i: {%f, %f}\n", i, g_sprites[i].x, g_sprites[i].y);
+	}
 	printf("}\n");
 }

@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 13:29:18 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 00:32:39 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 12:00:02 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	verify_map(void)
 	int		i;
 	int		j;
 	int		k;
+	int		l;
 	char	*m;
 
 	if (!(m = g_scene.map))
@@ -27,6 +28,7 @@ void	verify_map(void)
 		g_error |= MEMORY_ERROR;
 		return ;
 	}
+	l = 0;
 	j = -1;
 	while (++j < g_scene.map_size.y)
 	{
@@ -36,7 +38,9 @@ void	verify_map(void)
 			k = i + j * g_scene.map_size.x;
 			if (m[k] == 'N' || m[k] == 'S' || m[k] == 'W' || m[k] == 'E')
 				init_player(i, j, m[k]);
-			else if (m[k] != '1' && m[k] != '0' && m[k] != '2')
+			else if (m[k] == '2')
+				g_sprites[l++] = (t_dvector){i, j};
+			else if (m[k] != '1' && m[k] != '0')
 			{
 				g_error |= MAP_ERROR;
 				return ;
