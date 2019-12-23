@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 22:29:28 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 13:54:04 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 16:35:39 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	cast_all(void)
 {
-	t_cast cast;
+	t_cast	cast;
+	int		x;
 
 	reset_image();
-	int w = g_scene.resolution.x;
-	for(int x = 0; x < w; x++)
+	x = 0;
+	while (x < g_scene.resolution.x)
 	{
 		init_cast(&cast, x);
 		do_cast(&cast);
 		draw_cast(&cast);
+		x++;
 	}
 	draw_sprites();
 }
