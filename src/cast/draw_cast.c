@@ -6,13 +6,13 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:57:10 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:24:04 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 16:11:10 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cast.h"
 
-static void	vert_line(int x, int height, int tex_x)
+static void	vert_line(int x, int height, int tex_x, t_image texture)
 {
 	int	start;
 	int	end;
@@ -31,17 +31,44 @@ static void	vert_line(int x, int height, int tex_x)
 	{
 		d = y * 256 - g_scene.resolution.y * 128 + height * 128;
 		tex_y  = (d * TEX_SIZE / height) / 256;
-		color = g_scene.north_texture.data[tex_x + tex_y * TEX_SIZE];
+		color = texture.data[tex_x + tex_y * TEX_SIZE];
 		g_window.image.data[x + y * g_window.image.line_size] = color;
+	}
+}
+
+static t_image	get_texture(t_cast *cast)
+{
+	if (cast->rdx > 0)
+	{
+		if (cast->side)
+		{
+			if (cast->rdy < 0)
+				return (g_scene.north_texture);
+			return (g_scene.south_texture);
+		}
+		return (g_scene.west_texture);
+
+	}
+	else
+	{
+		if (cast->side)
+		{
+			if (cast->rdy < 0)
+				return (g_scene.north_texture);
+			return (g_scene.south_texture);
+		}
+		return (g_scene.east_texture);
 	}
 }
 
 void	draw_cast(t_cast *cast)
 {
-	int	height;
-	int	tex_x;
+	int		height;
+	int		tex_x;
 	double	wall_x;
+	t_image	texture;
 
+	texture = get_texture(cast);
 	height = g_scene.resolution.y / cast->pdist;
 	wall_x  = cast->side
 		? wall_x = g_player.x + cast->pdist * cast->rdx
@@ -52,5 +79,5 @@ void	draw_cast(t_cast *cast)
 		tex_x = TEX_SIZE - tex_x - 1;
 	if(cast->side == 1 && cast->rdy < 0)
 		tex_x = TEX_SIZE - tex_x - 1;
-	vert_line(cast->index, height, tex_x);
+	vert_line(cast->index, height, tex_x, texture);
 }
