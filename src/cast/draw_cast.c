@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:57:10 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 16:11:10 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 16:27:01 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static t_image	get_texture(t_cast *cast)
 		if (cast->side)
 		{
 			if (cast->rdy < 0)
-				return (g_scene.north_texture);
-			return (g_scene.south_texture);
+				return (g_scene.south_texture);
+			return (g_scene.north_texture);
 		}
-		return (g_scene.west_texture);
+		return (g_scene.east_texture);
 
 	}
 	else
@@ -54,10 +54,10 @@ static t_image	get_texture(t_cast *cast)
 		if (cast->side)
 		{
 			if (cast->rdy < 0)
-				return (g_scene.north_texture);
-			return (g_scene.south_texture);
+				return (g_scene.south_texture);
+			return (g_scene.north_texture);
 		}
-		return (g_scene.east_texture);
+		return (g_scene.west_texture);
 	}
 }
 
