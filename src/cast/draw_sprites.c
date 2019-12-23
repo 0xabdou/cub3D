@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:07:37 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 19:33:07 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 20:08:34 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,34 +83,32 @@ static void	init_sprite(t_sprite_info *si, int posx, int posy, double inv_det)
 		si->end.x = w - 1;
 }
 
-static void	actually_draw(t_sprite_info *si)
+static void	actually_draw(t_sprite_info *si, int w, int h)
 {
 	int	x;
 	int	y;
 	int	tex_x;
 	int	tex_y;
-	int	d;
-	int	color;
+	int	c;
 
-	x = si->start.x;
-	while (x < si->end.x)
+	x = si->start.x - 1;
+	while (++x < si->end.x)
 	{
-		tex_x = (x - (-si->dimensions.x / 2 + si->center_x))
-			* TEX_SIZE / si->dimensions.x ;
-		if(si->projection.y > 0 && x > 0 && x < g_scene.resolution.x && si->projection.y < g_distances[x])
+		tex_x = (x - (si->center_x - si->dimensions.x / 2))
+			* TEX_SIZE / si->dimensions.x;
+		if (si->projection.y > 0 && x > 0
+				&& x < w && si->projection.y < g_distances[x])
 		{
-			y = si->start.y;
-			while (y < si->end.y)
+			y = si->start.y - 1;
+			while (++y < si->end.y)
 			{
-				d = y - g_scene.resolution.y / 2 + si->dimensions.y / 2;
-				tex_y = ((d * TEX_SIZE) / si->dimensions.y);
-				color = g_scene.sprite_texture.data[TEX_SIZE * tex_y + tex_x];
-				if((color & 0x00FFFFFF) != 0)
-					g_window.image.data[x + y * g_window.image.line_size] = color;
-				y++;
+				tex_y = (y - (h - si->dimensions.y) / 2)
+					* TEX_SIZE / si->dimensions.y;
+				c = g_scene.sprite_texture.data[TEX_SIZE * tex_y + tex_x];
+				if (c)
+					g_window.image.data[x + y * g_window.image.line_size] = c;
 			}
 		}
-		x++;
 	}
 }
 
@@ -120,15 +118,15 @@ void		draw_sprites(void)
 	int				distance[g_num_sprites];
 	int				i;
 	t_sprite_info	si;
-	double 			inv_det; 
+	double			inv_det;
 
-	init_buffers(order, distance);	
+	init_buffers(order, distance);
 	inv_det = 1.0 / (g_cam.x * g_dir.y - g_dir.x * g_cam.y);
 	i = 0;
 	while (i < g_num_sprites)
 	{
 		init_sprite(&si, g_sprites[order[i]].x, g_sprites[order[i]].y, inv_det);
-		actually_draw(&si);
+		actually_draw(&si, g_scene.resolution.x, g_scene.resolution.y);
 		i++;
 	}
 }
