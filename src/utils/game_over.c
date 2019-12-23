@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:24:57 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 16:28:21 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 23:12:28 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	game_over(void)
 	if (g_error)
 		print_error();
 	clean_scene();
-	//free_rays();
-	// clean_window();
+	clean_window();
 	exit(g_error);
 }

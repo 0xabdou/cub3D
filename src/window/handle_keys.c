@@ -6,13 +6,11 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:09:11 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 16:22:09 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 23:05:38 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window.h"
-
-void	sprites(void);
 
 int	handle_keys(int key, void *params)
 {

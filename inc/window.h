@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:20:33 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 22:43:22 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 23:14:53 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void			hook_window(void);
 int				handle_keys(int key, void *params);
 int				refresh(void *params);
 void			reset_image(void);
+void			clean_window(void);
 
 #endif

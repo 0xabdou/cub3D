@@ -30,7 +30,8 @@ SRC := $(SRC) \
 	src/window/init_textures.c \
 	src/window/load_texture.c \
 	src/window/handle_keys.c \
-	src/window/reset_image.c
+	src/window/reset_image.c \
+	src/window/clean_window.c
 
 # cast
 SRC := $(SRC) \

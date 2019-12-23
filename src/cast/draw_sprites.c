@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:07:37 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 20:08:34 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/23 23:21:08 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static void	init_sprite(t_sprite_info *si, int posx, int posy, double inv_det)
 
 	h = g_scene.resolution.y;
 	w = g_scene.resolution.x;
-	sprite_x = posx - g_player.x;
-	sprite_y = posy - g_player.y;
+	sprite_x = posx - g_player.x + 0.5;
+	sprite_y = posy - g_player.y + 0.5;
 	si->projection.x = inv_det * (g_dir.y * sprite_x - g_dir.x * sprite_y);
 	si->projection.y = inv_det * (-g_cam.y * sprite_x + g_cam.x * sprite_y);
 	si->center_x = (w / 2) * (1 + si->projection.x / si->projection.y);
