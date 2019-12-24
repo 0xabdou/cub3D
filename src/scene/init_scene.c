@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 18:35:49 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 00:38:03 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 13:04:07 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void		init_scene(char *scene_file)
 	int		flags;
 
 	flags = 0;
+	line = 0;
 	fd = open(scene_file, O_RDONLY);
-	while ((ret = get_next_line(fd, &line) > 0) && flags != FULL_FLAG)
+	while ((ret = get_next_line(fd, &line)) > 0 && flags != FULL_FLAG)
 	{
 		flags = handle_line(line, flags);
 		if (g_error)

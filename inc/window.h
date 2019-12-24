@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:20:33 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 23:14:53 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 12:46:21 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_window
 t_window		g_window;
 
 void			init_window(void);
-void            load_texture(t_image *texture, char *texture_path);
+void			load_texture(t_image *texture, char *texture_path);
 void			init_textures(void);
 void			render_walls(void);
 void			hook_window(void);

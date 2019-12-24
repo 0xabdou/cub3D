@@ -1,11 +1,12 @@
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/06 17:40:19 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/18 11:52:30 by aouahib          ###   ########.fr       */
+/*   Created: 2019/12/24 12:46:38 by aouahib           #+#    #+#             */
+/*   Updated: 2019/12/24 12:49:58 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +52,7 @@ typedef struct	s_scene
 	t_image		west_texture;
 	t_image		east_texture;
 	t_image		sprite_texture;
+	int			save;
 }				t_scene;
 
 t_scene			g_scene;
@@ -64,7 +66,6 @@ int				set_path(char *line, int flags);
 int				set_resolution(char *line, int flags);
 void			set_map(int fd, char *line);
 void			verify_map();
-void			print_scene(void);
 void			clean_scene(void);
 int				map_has_wall_at(double x, double y);
 

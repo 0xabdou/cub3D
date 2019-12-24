@@ -6,14 +6,14 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:49:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 13:18:32 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 12:45:31 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAST_H
 # define CAST_H
 # include "player.h"
-#include "scene.h"
+# include "scene.h"
 
 typedef struct	s_cast
 {
@@ -41,10 +41,10 @@ typedef struct	s_sprite_info
 	int			center_x;
 }				t_sprite_info;
 
-void	init_cast(t_cast *cast, int x);
-void	do_cast(t_cast *cast);
-void	draw_cast(t_cast *cast);
-void	draw_sprites(void);
-void	cast_all(void);
+void			init_cast(t_cast *cast, int x);
+void			do_cast(t_cast *cast);
+void			draw_cast(t_cast *cast);
+void			draw_sprites(void);
+void			cast_all(void);
 
 #endif

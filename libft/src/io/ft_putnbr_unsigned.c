@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:34:40 by aouahib           #+#    #+#             */
-/*   Updated: 2019/11/02 16:36:44 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 12:44:11 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	helper(unsigned long long ul)
 	ft_putchar(ul % 10 + '0');
 }
 
-void	ft_putnbr_unsigned(unsigned long long ul)
+void		ft_putnbr_unsigned(unsigned long long ul)
 {
 	if (!ul)
 	{

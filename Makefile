@@ -13,7 +13,6 @@ MAIN = src/main.c
 SRC := $(SRC) \
 	src/scene/init_scene.c \
 	src/scene/clean_scene.c \
-	src/scene/print_scene.c \
 	src/scene/set_color.c \
 	src/scene/set_map.c \
 	src/scene/set_path.c \
