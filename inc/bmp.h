@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 14:28:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 20:11:33 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 23:29:36 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@
 typedef struct	s_bmph
 {
 	char	id[2];
-	int		total_size;
+	int		bmp_file_size;
 	int		unused;
 	int		offset;
-	int		header_size;
-	int		image_width;
-	int		image_height;
-	char	planes[2];
+	int		dib;
+	int		width;
+	int		height;
+	char	plane[2];
 	char	bpp[2];
 	int		compression;
-	int		bitmap_bytes;
+	int		raw_bitmap_size;
 	int		resx;
 	int		resy;
 	int		number_of_colors;
 	int		important_colors;
 }				t_bmph;
 
-void	save_bmp(void);
+void			save_bmp(void);
 
 # pragma pack(pop)
 #endif
