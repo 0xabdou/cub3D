@@ -52,6 +52,9 @@ SRC := $(SRC) \
 # error
 SRC := $(SRC) \
 	src/error/print_error.c
+# bmp 
+SRC := $(SRC) \
+	src/window/save_bmp.c
 
 OBJ = $(notdir $(SRC:.c=.o))
 
@@ -78,6 +81,8 @@ $(NAME): $(MAIN) $(LIBFT) $(OBJ)
 %.o: src/error/%.c
 	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
 %.o: src/vector/%.c
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+%.o: src/bmp/%.c
 	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
 
 $(LIBFT):

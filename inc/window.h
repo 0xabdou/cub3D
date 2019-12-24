@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:20:33 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 12:46:21 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 13:09:12 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int				handle_keys(int key, void *params);
 int				refresh(void *params);
 void			reset_image(void);
 void			clean_window(void);
+void			save_bmp(void);
 
 #endif

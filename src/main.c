@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 13:04:12 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 13:08:14 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 static int	args_error(void)
 {
-		g_error |= ARGS_ERROR;
-		return (print_error());
+	g_error |= ARGS_ERROR;
+	return (print_error());
 }
 
 int			main(int c, char **v)
@@ -27,7 +27,7 @@ int			main(int c, char **v)
 	if (c == 3 && ft_strncmp(v[2], "--save", 7))
 		return (args_error());
 	if (c == 3)
-		g_scene.save =1;
+		g_scene.save = 1;
 	init_scene(v[1]);
 	if (g_error)
 		return (print_error());
