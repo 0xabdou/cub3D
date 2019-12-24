@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 13:09:32 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 23:29:11 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 23:30:51 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	save_bmp(void)
 	t_bmph	bmph;
 	int		fd;
 
-	fd = open("image.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	fd = open("cub3d.bmp", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	bmph = get_header();
 	write(fd, &bmph, 54);
 	write(fd, g_window.image.data, bmph.raw_bitmap_size);
