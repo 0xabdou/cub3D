@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 13:29:18 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 23:03:49 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/25 20:44:24 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void		verify_map(void)
 {
 	int		j;
 	char	*m;
+	int		n;
 
 	if (!(m = g_scene.map))
 		return ;
-	g_sprites = malloc(g_num_sprites * sizeof(t_dvector));
+	n = g_num_sprites;
+	g_sprites = malloc(n * sizeof(t_dvector));
 	if (!g_sprites)
 	{
 		g_error |= MEMORY_ERROR;
@@ -50,6 +52,4 @@ void		verify_map(void)
 	j = -1;
 	while (++j < g_scene.map_size.y)
 		loop_over_line(m, j);
-	g_scene.canvas.x = g_scene.map_size.x * TILE_SIZE;
-	g_scene.canvas.y = g_scene.map_size.y * TILE_SIZE;
 }

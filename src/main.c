@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/25 16:55:28 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/25 22:47:03 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 static void	args_error(void)
 {
 	g_error |= ARGS_ERROR;
-	print_error();
 	game_over();
 }
 

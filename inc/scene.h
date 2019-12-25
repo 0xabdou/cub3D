@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:46:38 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/25 16:06:33 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/25 22:44:41 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct	s_scene
 	int			ceil_color;
 	t_vector	map_size;
 	char		*map;
-	t_vector	canvas;
 	t_image		north_texture;
 	t_image		south_texture;
 	t_image		west_texture;
@@ -69,8 +68,7 @@ int				set_color(char *line, int flags);
 int				set_path(char *line, int flags);
 int				set_resolution(char *line, int flags);
 void			set_map(int fd, char *line);
-void			verify_map();
+void			verify_map(void);
 void			clean_scene(void);
-int				map_has_wall_at(double x, double y);
 
 #endif

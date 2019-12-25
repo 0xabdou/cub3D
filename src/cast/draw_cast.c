@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:57:10 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/25 16:50:18 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/25 22:39:40 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void		vert_line(int x, int height, int tex_x, t_image texture)
 		tex_y = screen_y * TEX_SIZE / height;
 		g_window.image.data[x + start * g_window.image.line_size] =
 			texture.data[tex_x + tex_y * TEX_SIZE];
-			(void)tex_x;(void)texture;(void)x;
 		start++;
 	}
 }
