@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:46:38 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 12:49:58 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/25 16:06:33 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define C_FLAG 128
 # define FULL_FLAG 255
 # define MAP_FLAG 256
+# define MIN_RES_X 100
+# define MIN_RES_Y 100
+# define MAX_RES_X 2560
+# define MAX_RES_Y 1440
 
 typedef struct	s_scene
 {

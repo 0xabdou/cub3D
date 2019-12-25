@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:09:11 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 13:08:57 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/24 23:42:03 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	handle_keys(int key, void *params)
 		game_over();
 	cast_all();
 	if (g_scene.save)
-	{
 		save_bmp();
-		g_scene.save = 0;
-	}
 	mlx_put_image_to_window(g_window.mlx_ptr,
 			g_window.win_ptr,
 			g_window.image.ptr,
