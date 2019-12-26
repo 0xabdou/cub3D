@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 16:28:55 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/22 19:09:49 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/26 21:26:31 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "scene.h"
 # include "keys.h"
 # include <math.h>
-# define ROT_STEP 0.1
-# define MOVE_STEP 0.3
+# define ROT_STEP 0.05
+# define MOVE_STEP 0.1
 
 t_dvector		g_player;
 t_dvector		g_dir;

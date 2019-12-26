@@ -6,13 +6,13 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 21:57:10 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/25 22:39:40 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/26 12:38:55 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cast.h"
 
-static void		vert_line(int x, int height, int tex_x, t_image texture)
+static void		put_column(int x, int height, int tex_x, t_image texture)
 {
 	int	start;
 	int	end;
@@ -74,9 +74,9 @@ void			draw_cast(t_cast *cast)
 	texture = get_texture(cast);
 	height = g_scene.resolution.y / cast->pdist;
 	wall_x = cast->side
-		? wall_x = g_player.x + cast->pdist * cast->rdx
+		? g_player.x + cast->pdist * cast->rdx
 		: g_player.y + cast->pdist * cast->rdy;
 	wall_x -= floor(wall_x);
 	tex_x = wall_x * (double)TEX_SIZE;
-	vert_line(cast->index, height, tex_x, texture);
+	put_column(cast->index, height, tex_x, texture);
 }

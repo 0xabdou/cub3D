@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 12:07:37 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 23:21:08 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/26 21:28:21 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,15 @@ static void	init_sprite(t_sprite_info *si, int posx, int posy, double inv_det)
 	si->projection.x = inv_det * (g_dir.y * sprite_x - g_dir.x * sprite_y);
 	si->projection.y = inv_det * (-g_cam.y * sprite_x + g_cam.x * sprite_y);
 	si->center_x = (w / 2) * (1 + si->projection.x / si->projection.y);
-	si->dimensions.y = fabs(h / (si->projection.y));
-	si->start.y = -si->dimensions.y / 2 + h / 2;
+	si->length = fabs(h / (si->projection.y));
+	si->start.y = -si->length / 2 + h / 2;
 	si->start.y = si->start.y < 0 ? 0 : si->start.y;
-	si->end.y = si->dimensions.y / 2 + h / 2;
+	si->end.y = si->length / 2 + h / 2;
 	si->end.y = si->end.y >= h ? h - 1 : si->end.y;
-	si->dimensions.x = fabs(h / si->projection.y);
-	si->start.x = -si->dimensions.x / 2 + si->center_x;
+	si->start.x = -si->length / 2 + si->center_x;
 	if (si->start.x < 0)
 		si->start.x = 0;
-	si->end.x = si->dimensions.x / 2 + si->center_x;
+	si->end.x = si->length / 2 + si->center_x;
 	if (si->end.x >= w)
 		si->end.x = w - 1;
 }
@@ -94,16 +93,16 @@ static void	actually_draw(t_sprite_info *si, int w, int h)
 	x = si->start.x - 1;
 	while (++x < si->end.x)
 	{
-		tex_x = (x - (si->center_x - si->dimensions.x / 2))
-			* TEX_SIZE / si->dimensions.x;
+		tex_x = (x - (si->center_x - si->length / 2))
+			* TEX_SIZE / si->length;
 		if (si->projection.y > 0 && x > 0
 				&& x < w && si->projection.y < g_distances[x])
 		{
 			y = si->start.y - 1;
 			while (++y < si->end.y)
 			{
-				tex_y = (y - (h - si->dimensions.y) / 2)
-					* TEX_SIZE / si->dimensions.y;
+				tex_y = (y - (h - si->length) / 2)
+					* TEX_SIZE / si->length;
 				c = g_scene.sprite_texture.data[TEX_SIZE * tex_y + tex_x];
 				if (c)
 					g_window.image.data[x + y * g_window.image.line_size] = c;

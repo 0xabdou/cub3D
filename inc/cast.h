@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 20:49:07 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 12:45:31 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/26 13:56:40 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_cast
 typedef struct	s_sprite_info
 {
 	t_dvector	projection;
-	t_vector	dimensions;
+	double		length;
 	t_vector	start;
 	t_vector	end;
 	int			center_x;
