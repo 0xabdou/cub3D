@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 17:32:35 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/25 22:47:03 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/27 22:29:58 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,20 @@ static int	x_pressed(void *params)
 	return (0);
 }
 
+static int	check_extension(char *s)
+{
+	int	len;
+
+	len = ft_strlen(s);
+	return (s[--len] == 'b' && s[--len] == 'u' &&
+			s[--len] == 'c' && s[--len] == '.');
+}
+
 int			main(int c, char **v)
 {
 	if (c < 2 || c > 3)
+		args_error();
+	if (!check_extension(v[1]))
 		args_error();
 	if (c == 3 && ft_strncmp(v[2], "--save", 7))
 		args_error();
