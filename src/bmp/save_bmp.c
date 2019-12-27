@@ -6,13 +6,13 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 13:09:32 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/24 23:30:51 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/27 13:31:21 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bmp.h"
 
-t_bmph	get_header(void)
+static t_bmph	get_header(void)
 {
 	int		height;
 	int		width;
@@ -41,7 +41,7 @@ t_bmph	get_header(void)
 	return (bmph);
 }
 
-void	save_bmp(void)
+void			save_bmp(void)
 {
 	t_bmph	bmph;
 	int		fd;

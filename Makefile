@@ -31,7 +31,6 @@ SRC := $(SRC) \
 	src/window/handle_keys.c \
 	src/window/reset_image.c \
 	src/window/clean_window.c
-
 # cast
 SRC := $(SRC) \
 	src/cast/init_cast.c \
@@ -39,11 +38,10 @@ SRC := $(SRC) \
 	src/cast/draw_cast.c \
 	src/cast/draw_sprites.c \
 	src/cast/cast_all.c
-# utils (distance ????)
+# utils
 SRC := $(SRC) \
 	src/utils/is_num.c \
 	src/utils/free_split.c \
-	src/utils/distance.c \
 	src/utils/pow2.c \
 	src/utils/game_over.c
 # vector

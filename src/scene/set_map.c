@@ -6,7 +6,7 @@
 /*   By: aouahib <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:47:29 by aouahib           #+#    #+#             */
-/*   Updated: 2019/12/23 00:34:19 by aouahib          ###   ########.fr       */
+/*   Updated: 2019/12/27 13:13:50 by aouahib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	*read_map(int fd, char *line)
 		if (error)
 			break ;
 		first = 0;
-		(g_scene.map_size.y)++;
+		g_scene.map_size.y++;
 	}
 	g_error |= ret == -1 ? READ_ERROR : 0;
 	error = check_all(map + g_scene.map_size.x * (g_scene.map_size.y - 1))
