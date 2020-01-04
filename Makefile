@@ -1,10 +1,14 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -framework OpenGL -framework AppKit
 
 LIBFT_DIR = ./libft
 LIBFT_INC = $(LIBFT_DIR)/inc
 LIBFT = $(LIBFT_DIR)/libft.a
+
+MLX_DIR = src/mlx
+MLX_INC = $(LIBFT_DIR)/inc
+MLX = $(MLX_DIR)/libmlx.a
 
 INC = inc
 
@@ -57,37 +61,42 @@ SRC := $(SRC) \
 OBJ = $(notdir $(SRC:.c=.o))
 
 NAME = cub3D
+
 all : $(NAME)
 
-$(NAME): $(MAIN) $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -I $(LIBFT_INC) -I $(INC) $(LIBFT) $(OBJ) $(MAIN) -o $(NAME)
+$(NAME): $(MAIN) $(LIBFT) $(MLX) $(OBJ)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $(LIBFT) $(MLX) $(OBJ) $(MAIN) -o $(NAME)
 
 %.o: src/scene/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/cast/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/player/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/window/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/ray/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/utils/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/vector/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/error/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/vector/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 %.o: src/bmp/%.c
-	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(INC) $< -o $(@)
+	$(CC) $(CFLAGS) -c -I $(LIBFT_INC) -I $(MLX_INC) -I $(INC) $< -o $(@)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
+$(MLX):
+	make -C $(MLX_DIR)
+
 clean:
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 	rm -f $(OBJ)
 
 fclean: clean
