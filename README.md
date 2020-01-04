@@ -10,6 +10,12 @@ make
 ```
 
 For more info on how to run/configure the game, you can check the project's subject [here](https://github.com/zettai-dev/ft_server/blob/master/readme_srcs/en.subject.pdf)
+
+## screenshot
+<p align="center">
+  <img src="https://raw.githubusercontent.com/zettai-dev/cub3D/master/readme_srcs/screenshot.png" height="400">
+</p>
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/zettai-dev/ft_server/master/readme_srcs/git_logo.jpg" alt="42_1337" height="200">
 </p>
