@@ -1,5 +1,5 @@
 # cub3D
-One of 1337 new cursus projects, it is inspired by the world-famous eponymous 90's game, which was the first FPS ever, and allows you to explore ray-casting. The goal is to make a dynamic view inside a maze, in which you'll have to find your way.
+This projtect is inspired by the world-famous eponymous 90's game, which was the first FPS ever, and allows you to explore ray-casting. The goal is to make a dynamic view inside a maze, in which you'll have to find your way.
 ## installation
 (This project is developed under/for macOS, you'll need OpenGL and AppKit frameworks installed)
 ```
